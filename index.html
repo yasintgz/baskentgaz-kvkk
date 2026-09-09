@@ -1,0 +1,627 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BaşkentGaz Veri Politikası</title>
+<meta name="description" content="Başkent Doğalgaz Dağıtım GYO A.Ş. Kişisel Verilerin Saklanması, İşlenmesi ve İmhası Politikası">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;0,6..72,700;1,6..72,500&family=Public+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap">
+<style>
+  :root{
+    color-scheme: light dark;
+    --bg:#f4f7f9;
+    --surface:#ffffff;
+    --surface-tint:#eef3f6;
+    --ink:#152532;
+    --ink-soft:#4c6273;
+    --ink-faint:#8098a8;
+    --line:#dbe5ea;
+    --line-soft:#e8eef1;
+    --accent:#0071a8;
+    --accent-deep:#054469;
+    --accent-tint:#e3f1f8;
+    --accent-tint-line:#c6e2ef;
+    --shadow: 0 1px 2px rgba(15,40,58,.05), 0 8px 24px -12px rgba(15,40,58,.14);
+    --serif: "Newsreader", "Iowan Old Style", Georgia, serif;
+    --sans: "Public Sans", "Segoe UI", system-ui, sans-serif;
+    --mono: "IBM Plex Mono", "SFMono-Regular", Menlo, monospace;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --bg:#0f1a22;
+      --surface:#16232d;
+      --surface-tint:#1c2c37;
+      --ink:#e7eef2;
+      --ink-soft:#a9bcc7;
+      --ink-faint:#7f96a3;
+      --line:#28394454;
+      --line-soft:#28394480;
+      --accent:#5cb6e8;
+      --accent-deep:#8fd0f5;
+      --accent-tint:#152f3c;
+      --accent-tint-line:#25455a;
+      --shadow: 0 1px 2px rgba(0,0,0,.3), 0 8px 24px -12px rgba(0,0,0,.5);
+    }
+  }
+
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:var(--bg);
+    color:var(--ink);
+    font-family:var(--sans);
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3{ font-family:var(--serif); text-wrap:balance; color:var(--ink); }
+  a{ color:var(--accent-deep); }
+  img{max-width:100%;}
+
+  .wrap{
+    max-width:1160px;
+    margin:0 auto;
+    padding:0 24px 96px;
+    display:grid;
+    grid-template-columns:248px minmax(0,720px);
+    gap:56px;
+    justify-content:center;
+  }
+
+  /* ---- Masthead ---- */
+  .masthead{
+    max-width:1160px;
+    margin:0 auto;
+    padding:44px 24px 40px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    text-align:center;
+    gap:18px;
+    border-bottom:1px solid var(--line);
+    background:
+      radial-gradient(120% 140% at 50% -20%, var(--accent-tint) 0%, transparent 60%),
+      var(--bg);
+  }
+  .brand{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    font-family:var(--mono);
+    font-size:12.5px;
+    letter-spacing:.12em;
+    text-transform:uppercase;
+    color:var(--accent-deep);
+  }
+  .brand .flame{
+    width:9px;height:9px;border-radius:50%;
+    background:var(--accent);
+    box-shadow:0 0 0 3px var(--accent-tint);
+  }
+  .masthead h1{
+    font-size:clamp(28px,4.4vw,42px);
+    font-weight:600;
+    max-width:16ch;
+    margin:0;
+    line-height:1.18;
+  }
+  .masthead .sub{
+    font-size:15.5px;
+    color:var(--ink-soft);
+    max-width:52ch;
+  }
+  .doc-panel{
+    margin-top:14px;
+    display:grid;
+    grid-template-columns:repeat(4,minmax(120px,1fr));
+    gap:0;
+    width:100%;
+    max-width:760px;
+    border:1px solid var(--line);
+    border-radius:12px;
+    overflow:hidden;
+    background:var(--surface);
+    box-shadow:var(--shadow);
+  }
+  .doc-panel .cell{
+    padding:14px 16px;
+    border-left:1px solid var(--line-soft);
+    text-align:left;
+  }
+  .doc-panel .cell:first-child{ border-left:none; }
+  .doc-panel .cell .k{
+    font-family:var(--mono);
+    font-size:10.5px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--ink-faint);
+    margin-bottom:4px;
+  }
+  .doc-panel .cell .v{
+    font-size:14px;
+    font-weight:600;
+    color:var(--ink);
+    font-variant-numeric:tabular-nums;
+  }
+
+  /* ---- TOC (sidebar) ---- */
+  nav.toc{
+    align-self:start;
+    position:sticky;
+    top:28px;
+    padding-top:48px;
+  }
+  nav.toc .toc-label{
+    font-family:var(--mono);
+    font-size:10.5px;
+    letter-spacing:.1em;
+    text-transform:uppercase;
+    color:var(--ink-faint);
+    margin-bottom:10px;
+  }
+  nav.toc ol{
+    list-style:none; margin:0; padding:0;
+    display:flex; flex-direction:column; gap:2px;
+    border-left:1px solid var(--line);
+  }
+  nav.toc li a{
+    display:block;
+    padding:6px 0 6px 14px;
+    margin-left:-1px;
+    border-left:1px solid transparent;
+    font-size:13.5px;
+    color:var(--ink-soft);
+    text-decoration:none;
+  }
+  nav.toc li a:hover{ color:var(--accent-deep); border-left-color:var(--accent); }
+  nav.toc li.sub a{ padding-left:26px; font-size:12.5px; color:var(--ink-faint); }
+  nav.toc li.sub a:hover{ color:var(--accent-deep); }
+
+  /* ---- Article body ---- */
+  main.doc{ min-width:0; padding-top:48px; }
+
+  .lede{
+    font-family:var(--serif);
+    font-size:19px;
+    font-style:italic;
+    color:var(--ink-soft);
+    border-left:3px solid var(--accent);
+    padding:2px 0 2px 20px;
+    margin:0 0 48px;
+    max-width:60ch;
+  }
+
+  section.part{
+    padding-top:40px;
+    margin-top:40px;
+    border-top:1px solid var(--line);
+    scroll-margin-top:20px;
+  }
+  section.part:first-of-type{ border-top:none; margin-top:0; }
+
+  .part-eyebrow{
+    font-family:var(--mono);
+    font-size:11px;
+    letter-spacing:.1em;
+    color:var(--accent);
+    text-transform:uppercase;
+    margin-bottom:6px;
+  }
+  section.part > h2{
+    font-size:26px;
+    font-weight:600;
+    margin:0 0 22px;
+  }
+  article.sub{ margin:26px 0; scroll-margin-top:20px; }
+  article.sub h3{
+    font-size:17px;
+    font-weight:600;
+    margin:0 0 10px;
+    color:var(--accent-deep);
+  }
+
+  p{ margin:0 0 14px; max-width:66ch; color:var(--ink); }
+  p:last-child{ margin-bottom:0; }
+
+  ul.policy-list{
+    margin:12px 0 16px; padding:0; list-style:none;
+    display:flex; flex-direction:column; gap:9px;
+    max-width:66ch;
+  }
+  ul.policy-list li{
+    position:relative; padding-left:20px; font-size:15px;
+  }
+  ul.policy-list li::before{
+    content:"";
+    position:absolute; left:2px; top:9px;
+    width:6px; height:6px; border-radius:1.5px;
+    background:var(--accent);
+    transform:rotate(45deg);
+  }
+
+  .callout{
+    background:var(--surface);
+    border:1px solid var(--line);
+    border-left:3px solid var(--accent);
+    border-radius:8px;
+    padding:16px 20px;
+    margin:18px 0;
+    box-shadow:var(--shadow);
+  }
+  .callout p{ margin:0; font-size:14.5px; color:var(--ink-soft); }
+
+  /* ---- Tables ---- */
+  .table-wrap{ overflow-x:auto; margin:18px 0 8px; border-radius:10px; border:1px solid var(--line); box-shadow:var(--shadow); }
+  table{ width:100%; border-collapse:collapse; background:var(--surface); font-size:13.8px; }
+  thead th{
+    text-align:left; padding:11px 14px;
+    background:var(--surface-tint);
+    font-family:var(--mono); font-size:10.5px; letter-spacing:.06em; text-transform:uppercase;
+    color:var(--ink-soft);
+    border-bottom:1px solid var(--line);
+    white-space:nowrap;
+  }
+  tbody td{
+    padding:11px 14px;
+    border-bottom:1px solid var(--line-soft);
+    color:var(--ink);
+    vertical-align:top;
+  }
+  tbody tr:last-child td{ border-bottom:none; }
+  tbody td.term{ font-weight:600; white-space:nowrap; color:var(--ink); }
+  tbody td.num{ font-variant-numeric:tabular-nums; font-family:var(--mono); font-size:12.5px; color:var(--ink-soft); white-space:nowrap; }
+
+  .committee-name{ font-weight:600; }
+  .committee-role{ color:var(--ink-soft); }
+
+  footer.doc-footer{
+    margin-top:64px;
+    padding-top:28px;
+    border-top:1px solid var(--line);
+    display:flex;
+    flex-wrap:wrap;
+    gap:12px 28px;
+    justify-content:space-between;
+    align-items:baseline;
+    font-family:var(--mono);
+    font-size:11px;
+    color:var(--ink-faint);
+    letter-spacing:.03em;
+  }
+
+  @media (max-width: 880px){
+    .wrap{ grid-template-columns:minmax(0,1fr); }
+    nav.toc{ position:static; padding-top:0; margin-bottom:8px; }
+    nav.toc ol{ display:none; }
+    .doc-panel{ grid-template-columns:repeat(2,1fr); }
+    .doc-panel .cell:nth-child(3){ border-left:none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="masthead">
+  <div class="brand"><span class="flame"></span>Başkent Doğalgaz Dağıtım GYO A.Ş.</div>
+  <h1>Kişisel Verilerin Saklanması, İşlenmesi ve İmhası Politikası</h1>
+  <p class="sub">6698 sayılı Kişisel Verilerin Korunması Kanunu (KVKK) kapsamında; müşterilerin, çalışan adaylarının, hissedarların, ziyaretçilerin ve iş ortaklarının kişisel verilerinin korunmasına ilişkin Şirket politikası.</p>
+  <div class="doc-panel">
+    <div class="cell"><div class="k">Doküman No</div><div class="v">YN.PO.01</div></div>
+    <div class="cell"><div class="k">Yürürlük Tarihi</div><div class="v">29.12.2017</div></div>
+    <div class="cell"><div class="k">Revizyon Tarihi</div><div class="v">25.07.2024</div></div>
+    <div class="cell"><div class="k">Revizyon No</div><div class="v">03</div></div>
+  </div>
+</div>
+
+<div class="wrap">
+  <nav class="toc" aria-label="İçindekiler">
+    <div class="toc-label">İçindekiler</div>
+    <ol>
+      <li><a href="#bolum1">1 · Giriş</a></li>
+      <li class="sub"><a href="#s11">1.1 Giriş</a></li>
+      <li class="sub"><a href="#s12">1.2 Amaç</a></li>
+      <li class="sub"><a href="#s13">1.3 Kapsam</a></li>
+      <li class="sub"><a href="#s14">1.4 Mevzuatın Uygulanması</a></li>
+      <li class="sub"><a href="#s15">1.5 Yürürlük</a></li>
+      <li><a href="#bolum2">2 · Verilerin Korunması</a></li>
+      <li class="sub"><a href="#s21">2.1 Veri Güvenliği</a></li>
+      <li class="sub"><a href="#s22">2.2 Veri Sahibinin Hakları</a></li>
+      <li class="sub"><a href="#s23">2.3 Özel Nitelikli Veriler</a></li>
+      <li class="sub"><a href="#s24">2.4 Aydınlatma</a></li>
+      <li><a href="#bolum3">3 · Verilerin İşlenmesi</a></li>
+      <li class="sub"><a href="#s31">3.1 İlkeler</a></li>
+      <li class="sub"><a href="#s32">3.2 İşleme Şartları</a></li>
+      <li class="sub"><a href="#s33">3.3 Özel Nitelikli İşleme</a></li>
+      <li class="sub"><a href="#s34">3.4 Aktarım</a></li>
+      <li class="sub"><a href="#s35">3.5 Kamera / Ziyaretçi / İnternet</a></li>
+      <li><a href="#bolum4">4 · Silme, Yok Etme, Anonimleştirme</a></li>
+      <li><a href="#bolum5">5 · Diğer Hususlar</a></li>
+      <li><a href="#ek1">Ek-1 · Tanımlar</a></li>
+      <li><a href="#ek2">Ek-2 · Saklama Süreleri</a></li>
+      <li><a href="#revizyon">Revizyon Geçmişi</a></li>
+    </ol>
+  </nav>
+
+  <main class="doc">
+    <p class="lede">Kişisel veri, kimliği belirli veya belirlenebilir gerçek kişiye ilişkin her türlü bilgidir — ad, doğum tarihi, e-posta, ses kaydı, çehre görüntüsü ve daha fazlası. Bu Politika, Şirketimizin bu verileri nasıl koruduğunu, işlediğini ve imha ettiğini açıklar.</p>
+
+    <section class="part" id="bolum1">
+      <div class="part-eyebrow">Bölüm 1</div>
+      <h2>Giriş</h2>
+
+      <article class="sub" id="s11">
+        <h3>1.1 Giriş</h3>
+        <p>Kişisel veri, Kişisel Verilerin Korunması Kanunu'nun (KVKK) "Tanımlar" başlığını taşıyan 3 üncü maddesinin (d) bendinde "kimliği belirli veya belirlenebilir gerçek kişiye ilişkin her türlü bilgi" olarak tanımlanmaktadır. Kişisel veri üç ana unsurdan oluşmaktadır: belirli veya belirlenebilir gerçek kişi, bilgi ve bilginin kişiye ilişkin olması.</p>
+        <p>Kanunda geçen "her türlü bilgi" ifadesi ile bir gerçek kişinin adı, soyadı, kimlik numarası, doğum tarihi, doğum yeri, e-posta adresi, telefon numarası, adresi, mesleği, sosyal güvenlik numarası, pasaport numarası, motorlu taşıt plakası, çehre görüntüsü, resmi, ses kaydı, her türlü mahkûmiyet bilgisi vs. kısacası gerçek kişiye ilişkin her türlü bilgi kişisel veri olarak kabul edilmektedir.</p>
+        <p>Kişisel verilerin korunması Şirketimizin en önemli öncelikleri arasındadır. Bu Politika ile yönetilen; müşterilerimizin, potansiyel müşterilerimizin, çalışan adaylarımızın, Şirketimiz hissedarlarının, Şirketimiz yetkililerinin, ziyaretçilerimizin, işbirliği içinde olduğumuz şirketlerin/kurumların çalışanlarının, hissedarlarının ve yetkililerinin ve üçüncü kişilerin kişisel verilerinin korunması, işlenmesi ve imhası bu konunun en önemli ayağını oluşturmaktadır.</p>
+        <p>Çalışanlarımızın kişisel verilerinin korunmasına ilişkin yürütülen faaliyetler, bu Politika ile paralel olarak kaleme alınan <em>"Başkent Doğalgaz Dağıtım GYO A.Ş. Çalışanlarının Kişisel Verilerin Korunması, İşlenmesi ve İmhası Politikası"</em> altında düzenlenmekte ve yönetilmektedir.</p>
+        <p>Türkiye Cumhuriyeti Anayasası'na göre herkes, kendisiyle ilgili kişisel verilerin korunmasını isteme hakkına sahiptir. Bu Politika'da kişisel verilerin işlenmesinde Şirketimizin benimsediği temel ilkeler şunlardır:</p>
+        <ul class="policy-list">
+          <li>Kişisel verileri hukuka ve dürüstlük kurallarına uygun işleme</li>
+          <li>Kişisel verileri doğru ve gerektiğinde güncel tutma</li>
+          <li>Kişisel verilerin belirli, açık ve meşru amaçlar için işlenmesi</li>
+          <li>Kişisel verileri işlendikleri amaçla bağlantılı, sınırlı ve ölçülü işleme</li>
+          <li>Kişisel verileri ilgili mevzuatta öngörülen veya işlendikleri amaç için gerekli olan süre kadar muhafaza etme</li>
+          <li>Kişisel veri sahiplerini aydınlatma ve bilgilendirme</li>
+          <li>Kişisel veri sahiplerinin haklarını kullanması için gerekli sistemi kurma</li>
+          <li>Kişisel verilerin muhafazasında gerekli tedbirleri alma</li>
+          <li>Kişisel verilerin üçüncü kişilere aktarılmasında ilgili mevzuata ve Kurul düzenlemelerine uygun davranma</li>
+          <li>Özel nitelikli kişisel verilerin işlenmesine ve korunmasına gerekli hassasiyeti gösterme</li>
+        </ul>
+      </article>
+
+      <article class="sub" id="s12">
+        <h3>1.2 Amaç</h3>
+        <p>Bu Politika'nın temel amacı, Şirketimiz tarafından hukuka uygun bir biçimde yürütülen kişisel veri işleme faaliyeti ve kişisel verilerin korunmasına yönelik benimsenen sistemler konusunda açıklamalarda bulunmak; müşterilerimiz, potansiyel müşterilerimiz, çalışan adaylarımız, şirket hissedarlarımız, şirket yetkililerimiz, ziyaretçilerimiz, işbirliği içinde olduğumuz kurumların çalışanları, hissedarları ve yetkilileri ile üçüncü kişileri bilgilendirerek şeffaflığı sağlamaktır.</p>
+      </article>
+
+      <article class="sub" id="s13">
+        <h3>1.3 Kapsam</h3>
+        <p>Bu Politika; amaç kısmında zikredilen kişilerin otomatik olan ya da herhangi bir veri kayıt sisteminin parçası olmak kaydıyla otomatik olmayan yollarla işlenen tüm kişisel verilerini kapsamaktadır.</p>
+      </article>
+
+      <article class="sub" id="s14">
+        <h3>1.4 Politikanın ve Mevzuatın Uygulanması</h3>
+        <p>Kişisel verilerin işlenmesi ve korunması konusunda yürürlükte bulunan mevzuat Şirketimiz açısından öncelikle uygulama alanı bulacaktır. Yürürlükte bulunan mevzuat ile Politika arasında uyumsuzluk bulunması durumunda, Şirketimiz yürürlükteki mevzuatı uygulamaya devam edecektir. Şirketimiz, KVKK'nda öngörülen yürürlük sürelerine uygun hareket ederek gerekli sistem ve hazırlıklarını yürütmektedir.</p>
+      </article>
+
+      <article class="sub" id="s15">
+        <h3>1.5 Politikanın Yürürlüğü</h3>
+        <p>Şirketimiz tarafından düzenlenen bu Politika'nın yürürlük tarihi <strong>29.12.2017</strong>'dir. Politika'nın tamamının veya belirli maddelerinin yenilenmesi durumunda Politika'nın yürürlük tarihi güncellenecektir. Politika, Şirketimizin internet sitesinde (<a href="http://www.baskentdogalgaz.com.tr" target="_blank" rel="noopener">www.baskentdogalgaz.com.tr</a>) yayımlanır ve kişisel veri sahiplerinin talebi üzerine ilgili kişilerin erişimine sunulur.</p>
+      </article>
+    </section>
+
+    <section class="part" id="bolum2">
+      <div class="part-eyebrow">Bölüm 2</div>
+      <h2>Kişisel Verilerin Korunmasına İlişkin Hususlar</h2>
+      <p>Şirketimiz, KVK Kanunu'nun 12 inci maddesine uygun olarak, işlemekte olduğu kişisel verilerin hukuka aykırı olarak işlenmesini ve verilere hukuka aykırı olarak erişilmesini önlemekte, verilerin muhafazasını sağlamak için uygun güvenlik düzeyini sağlamaya yönelik gerekli teknik ve idari tedbirleri almakta ve bu kapsamda gerekli denetimleri yapmakta ve/veya yaptırmaktadır.</p>
+
+      <article class="sub" id="s21">
+        <h3>2.1 Kişisel Verilerin Güvenliğinin Sağlanması</h3>
+        <p>Şirketimiz tarafından KVK Kanunu'nun 12 inci maddesi uyarınca "veri güvenliğini" sağlamaya yönelik alınan aksiyonlar ve tedbirler:</p>
+        <ul class="policy-list">
+          <li>Teknolojik imkânlar ve uygulama maliyetine göre teknik ve idari tedbirler alınmakta; çalışanlar öğrendikleri kişisel verileri KVKK hükümlerine aykırı olarak açıklayamayacakları ve bu yükümlülüğün görevden ayrılmalarından sonra da devam edeceği konusunda bilgilendirilmekte, kendilerinden gerekli taahhütler alınmaktadır.</li>
+          <li>Kişisel verilerin tedbirsizlikle veya yetkisiz olarak açıklanmasını, erişimini, aktarılmasını önlemek için korunacak verinin niteliğine göre teknik ve idari tedbirler alınmaktadır.</li>
+          <li>Kişisel verileri aktarmış olduğu iş ortakları ve tedarikçiler gibi veri işleyen kurumlar nezdinde farkındalıklar arttırılmaktadır.</li>
+          <li>Veri sorumlusu olarak uyulması zorunlu yükümlülükler, tedarikçi ve iş ortaklarına sözleşmesel olarak yükletilmektedir.</li>
+          <li>Kişisel verilerin güvenli ortamlarda saklanması ve hukuka aykırı amaçlarla yok edilmesini, kaybolmasını veya değiştirilmesini önlemek için gerekli teknik ve idari tedbirler alınmaktadır.</li>
+          <li>Şirket bünyesinde gerekli denetimler yapılmakta veya yaptırılmakta; sonuçlar ilgili birime raporlanarak tedbirlerin iyileştirilmesi sağlanmaktadır.</li>
+          <li>İşlenen kişisel verilerin kanuni olmayan yollarla başkaları tarafından elde edilmesi hâlinde, bu durumun en kısa sürede ilgili kişiye ve Kurul'a bildirilmesini sağlayan sistem yürütülmektedir.</li>
+        </ul>
+      </article>
+
+      <article class="sub" id="s22">
+        <h3>2.2 Veri Sahibinin Haklarının Gözetilmesi</h3>
+        <p>Şirketimiz, kişisel veri sahiplerinin haklarının değerlendirilmesi ve gereken bilgilendirmenin yapılması için KVK Kanunu'nun 13 üncü maddesine uygun olarak gerekli kanalları, iç işleyişi, idari ve teknik düzenlemeleri yürütmektedir. Talepler "yazılı" veya Kurul'un belirleyeceği diğer yöntemlerle iletildiğinde, Şirketimiz talebi en kısa sürede ve en geç <strong>30 gün</strong> içinde ücretsiz olarak sonuçlandırmaktadır (işlemin ayrıca maliyet gerektirmesi hâlinde Kurul'un belirlediği tarifedeki ücret alınır).</p>
+        <p>Kişisel veri sahipleri şu haklara sahiptir:</p>
+        <ul class="policy-list">
+          <li>Kişisel veri işlenip işlenmediğini öğrenme</li>
+          <li>İşlenmişse buna ilişkin bilgi talep etme</li>
+          <li>İşlenme amacını ve amacına uygun kullanılıp kullanılmadığını öğrenme</li>
+          <li>Yurt içinde/dışında aktarıldığı üçüncü kişileri bilme</li>
+          <li>Eksik veya yanlış işlenmişse düzeltilmesini isteme ve bunun üçüncü kişilere bildirilmesini isteme</li>
+          <li>İşlenmesini gerektiren sebepler ortadan kalkmışsa silinmesini veya yok edilmesini isteme ve bunun üçüncü kişilere bildirilmesini isteme</li>
+          <li>Otomatik sistemlerle analiz sonucu kendisi aleyhine ortaya çıkan sonuca itiraz etme</li>
+          <li>Kanuna aykırı işlenme sebebiyle uğranılan zararın giderilmesini talep etme</li>
+        </ul>
+      </article>
+
+      <article class="sub" id="s23">
+        <h3>2.3 Özel Nitelikli Kişisel Verilerin Korunması</h3>
+        <p>KVK Kanunu ile bazı kişisel verilere, hukuka aykırı olarak işlendiğinde kişilerin mağduriyetine veya ayrımcılığa sebep olma riski nedeniyle özel önem atfedilmiştir. Bu veriler; ırk, etnik köken, siyasi düşünce, felsefi inanç, din, mezhep veya diğer inançlar, kılık ve kıyafet, dernek, vakıf ya da sendika üyeliği, sağlık, cinsel hayat, ceza mahkûmiyeti ve güvenlik tedbirleriyle ilgili veriler ile biyometrik ve genetik verilerdir. Şirketimiz, bu verilerin korunması için alınan teknik ve idari tedbirleri özel nitelikli kişisel veriler bakımından özenle uygulamakta ve gerekli denetimleri sağlamaktadır.</p>
+      </article>
+
+      <article class="sub" id="s24">
+        <h3>2.4 Kişisel Veri Sahibinin Aydınlatılması ve Bilgilendirilmesi</h3>
+        <p>Şirketimiz, KVK Kanunu'nun 10 uncu maddesine uygun olarak, kişisel verilerin elde edilmesi sırasında kişisel veri sahiplerini; Şirketin kimliği, verilerin hangi amaçla işleneceği, kimlere ve hangi amaçla aktarılabileceği, toplama yöntemi ve hukuki sebebi ile 11 inci madde kapsamındaki haklar konusunda aydınlatmaktadır. Şirketimiz ayrıca ilgili kişileri, "açık rıza"ya başvurduğu zamanlar başta olmak üzere, farklı yöntemlerle bilgilendirmede bulunmaktadır.</p>
+      </article>
+    </section>
+
+    <section class="part" id="bolum3">
+      <div class="part-eyebrow">Bölüm 3</div>
+      <h2>Kişisel Verilerin İşlenmesine İlişkin Hususlar</h2>
+      <p>Şirketimiz, Anayasa'nın 20. maddesine ve KVK Kanunu'nun 4 üncü maddesine uygun olarak; hukuka ve dürüstlük kurallarına uygun, doğru ve gerektiğinde güncel, belirli-açık-meşru amaçlar güderek, amaçla bağlantılı-sınırlı-ölçülü bir biçimde kişisel veri işleme faaliyetinde bulunmaktadır.</p>
+      <div class="callout">
+        <p>Şirketimiz kişisel verileri, KVK Kanunu'nun 5 inci maddesi uyarınca rıza doğrultusunda veya rızanın gerekmediği şu hâllerde işleyebilir: kanunlarda açıkça öngörülmesi · kişinin hayatı/beden bütünlüğünün korunması için zorunluluk · sözleşmenin kurulması/ifasıyla doğrudan ilgi · hukuki yükümlülüğün yerine getirilmesi · verinin ilgili kişi tarafından alenileştirilmiş olması · bir hakkın tesisi/kullanılması/korunması için zorunluluk · temel hak ve özgürlüklere zarar vermemek kaydıyla veri sorumlusunun meşru menfaati.</p>
+      </div>
+
+      <article class="sub" id="s31">
+        <h3>3.1 Mevzuatta Öngörülen İlkelere Uygun İşleme</h3>
+        <p><strong>Hukuka ve dürüstlük kuralına uygun veri işleme —</strong> Şirketimiz, kişisel verilerin işlenmesinde orantılılık gerekliliklerini dikkate almakta, verileri amacın gerektirdiği dışında kullanmamaktadır.</p>
+        <p><strong>Doğru ve gerektiğinde güncel olmasını sağlama —</strong> Kişisel veri sahiplerinin temel haklarını ve Şirketin meşru menfaatlerini dikkate alarak işlenen verilerin doğru ve güncel olması için gerekli tedbirler alınmaktadır.</p>
+        <p><strong>Belirli, açık ve meşru amaçlarla veri işleme —</strong> İşleme amacı, faaliyet başlamadan önce açık ve kesin olarak belirlenmektedir; veriler sunulan hizmetle bağlantılı ve gerekli olan kadar işlenmektedir.</p>
+        <p><strong>İşlendikleri amaçla bağlantılı, sınırlı ve ölçülü olma —</strong> Amacın gerçekleştirilmesiyle ilgili olmayan veya ihtiyaç duyulmayan verilerin işlenmesinden kaçınılmakta; sonradan ortaya çıkması muhtemel ihtiyaçlara yönelik veri işleme faaliyeti yürütülmemektedir.</p>
+        <p><strong>Gerekli olan süre kadar muhafaza —</strong> Mevzuatta bir süre öngörülmüşse bu süreye uyulmakta; öngörülmemişse veriler işlendikleri amaç için gerekli olan süre kadar saklanmakta, sürenin bitiminde veya sebeplerin ortadan kalkmasıyla silinmekte, yok edilmekte veya anonim hale getirilmektedir.</p>
+      </article>
+
+      <article class="sub" id="s32">
+        <h3>3.2 KVK Kanunu'nun 5. Maddesindeki İşleme Şartları</h3>
+        <p>Anayasa'nın 20. maddesinin üçüncü fıkrası gereğince, kişisel veriler ancak kanunda öngörülen hallerde veya kişinin açık rızasıyla işlenebilir. Açık rıza dışında, aşağıdaki şartlardan birinin (veya birden fazlasının) varlığı durumunda da kişisel veriler işlenebilir:</p>
+        <ul class="policy-list">
+          <li>Kişisel veri sahibinin açık rızasının bulunması</li>
+          <li>Kanunlarda açıkça öngörülmesi</li>
+          <li>Fiili imkânsızlık sebebiyle ilgilinin açık rızasının alınamaması</li>
+          <li>Sözleşmenin kurulması veya ifasıyla doğrudan ilgi olması</li>
+          <li>Şirketin hukuki yükümlülüğünü yerine getirmesi</li>
+          <li>Kişisel veri sahibinin kişisel verisini alenileştirmesi</li>
+          <li>Bir hakkın tesisi veya korunması için veri işlemenin zorunlu olması</li>
+          <li>Şirketimizin meşru menfaati için veri işlemenin zorunlu olması</li>
+        </ul>
+      </article>
+
+      <article class="sub" id="s33">
+        <h3>3.3 Özel Nitelikli Kişisel Verilerin İşlenmesi</h3>
+        <p>Özel nitelikli kişisel veriler, Kurul tarafından belirlenecek yeterli önlemlerin alınması kaydıyla; kişisel veri sahibinin açık rızası varsa, ya da açık rıza yoksa sağlık ve cinsel hayat dışındaki özel nitelikli veriler kanunlarda öngörülen hallerde işlenmektedir. Sağlığa ve cinsel hayata ilişkin özel nitelikli veriler ise ancak kamu sağlığının korunması, koruyucu hekimlik, tıbbi teşhis, tedavi ve bakım hizmetlerinin yürütülmesi, sağlık hizmetleri ile finansmanının planlanması ve yönetimi amacıyla, sır saklama yükümlülüğü altındaki kişiler veya yetkili kurum/kuruluşlar tarafından işlenmektedir.</p>
+      </article>
+
+      <article class="sub" id="s34">
+        <h3>3.4 Kişisel Verilerin Aktarılması</h3>
+        <p>Şirketimiz, hukuka uygun kişisel veri işleme amaçları doğrultusunda gerekli güvenlik önlemlerini alarak kişisel verileri ve özel nitelikli kişisel verileri üçüncü kişilere (üçüncü kişi şirketlere, grup şirketlerine, üçüncü gerçek kişilere) aktarabilmektedir. Kural olarak ilgili kişinin açık rızası aranır; ancak aşağıdaki hallerden en az birinin bulunması hâlinde açık rıza olmaksızın da aktarım yapılabilir:</p>
+        <ul class="policy-list">
+          <li>Kanunlarda açıkça öngörülmesi</li>
+          <li>Kişinin hayatı veya beden bütünlüğünün korunması için zorunluluk (rızasını açıklayamayacak durumda olması hâlinde)</li>
+          <li>Sözleşmenin kurulması veya ifasıyla doğrudan ilgili olması</li>
+          <li>Veri sorumlusunun hukuki yükümlülüğünün yerine getirilmesi için zorunluluk</li>
+          <li>Verinin ilgili kişi tarafından alenileştirilmiş olması</li>
+          <li>Bir hakkın tesisi, kullanılması veya korunması için zorunluluk</li>
+          <li>Temel hak ve özgürlüklere zarar vermemek kaydıyla veri sorumlusunun meşru menfaati</li>
+        </ul>
+      </article>
+
+      <article class="sub" id="s35">
+        <h3>3.5 Bina/Tesis Girişleri, Kamera İzleme ve İnternet Sitesi Ziyaretçileri</h3>
+        <p>Güvenliğin sağlanması amacıyla, Şirketimiz binalarında ve tesislerinde güvenlik kamerasıyla izleme ile misafir giriş-çıkışlarının takibine yönelik kişisel veri işleme faaliyetinde bulunulmaktadır. Görüntü kayıtları alınan bölgelerde uyarı levhaları bulunmaktadır. Kayıtlara yalnızca sınırlı sayıda Şirket çalışanı erişebilmekte; canlı görüntüleri ise dışarıdan hizmet alınan güvenlik görevlileri izleyebilmektedir. Erişimi olan kişiler gizlilik taahhütnamesi ile verilerin gizliliğini koruyacağını beyan etmektedir.</p>
+        <p>Bina ve tesislerde kalınan süre boyunca talep eden ziyaretçilere internet erişimi sağlanabilmekte; bu erişime ilişkin log kayıtları 5651 sayılı Kanun'a göre kayıt altına alınmakta ve yalnızca yetkili kamu kurumlarının talebi veya iç denetim süreçlerinde işlenmektedir.</p>
+        <p>Şirketimizin internet sitesini ziyaret eden kişilerin site içerisindeki hareketleri, ziyaret amaçlarına uygun ve kişiselleştirilmiş içerik sunmak amacıyla çerezler (cookie) gibi teknik vasıtalarla kaydedilmektedir. Detaylı açıklamalar ilgili internet sitelerinin "Gizlilik Politikası" metinlerinde yer almaktadır.</p>
+      </article>
+    </section>
+
+    <section class="part" id="bolum4">
+      <div class="part-eyebrow">Bölüm 4</div>
+      <h2>Kişisel Verilerin Silinmesi, Yok Edilmesi ve Anonimleştirilmesi</h2>
+      <p>Türk Ceza Kanunu'nun 138 inci maddesi ve KVK Kanunu'nun 7 inci maddesi uyarınca, hukuka uygun işlenmiş olsa dahi işlenmesini gerektiren sebeplerin ortadan kalkması hâlinde, Şirketimizin kendi kararına istinaden veya kişisel veri sahibinin talebi üzerine kişisel veriler silinir, yok edilir veya anonim hâle getirilir. Şirketimiz tarafından periyodik imha kontrolü <strong>altı ayda bir</strong> yapılır ve imhasına karar verilen veriler resen silinir, yok edilir veya anonim hâle getirilir.</p>
+
+      <article class="sub">
+        <h3>4.1 Kişisel Verilerin Silinmesi</h3>
+        <p>Kişisel verilerin ilgili kullanıcılar için hiçbir şekilde erişilemez ve tekrar kullanılamaz hâle getirilmesi işlemidir. Evrak, hard disk ve CD gibi verilerin tutulduğu yerlerden geri dönüşüm sağlanmayacak şekilde silinmesini ifade eder.</p>
+      </article>
+      <article class="sub">
+        <h3>4.2 Kişisel Verilerin Yok Edilmesi</h3>
+        <p>Kişisel verilerin hiç kimse tarafından hiçbir şekilde erişilemez, geri getirilemez ve tekrar kullanılamaz hâle getirilmesi işlemidir; verinin bulunduğu evrakın fiziki olarak yok edilmesini ifade eder.</p>
+      </article>
+      <article class="sub">
+        <h3>4.3 Kişisel Verilerin Anonim Hâle Getirilmesi</h3>
+        <p>Kişisel verilerin, başka verilerle eşleştirilse dahi hiçbir surette kimliği belirli veya belirlenebilir bir gerçek kişiyle ilişkilendirilemeyecek hâle getirilmesidir. Örneğin TÜİK tarafından yayımlanan istatistiki bilgiler gibi.</p>
+      </article>
+    </section>
+
+    <section class="part" id="bolum5">
+      <div class="part-eyebrow">Bölüm 5</div>
+      <h2>Diğer Hususlar</h2>
+
+      <article class="sub" id="s51">
+        <h3>5.1 Diğer Politikalarla İlişki</h3>
+        <p>Şirketimiz, işbu Politika ile ortaya koyduğu esasların icrasına yönelik politika, prosedür ve uygulama rehberleri ile Şirket içerisinde uygulanmasını temin etmektedir; bu esaslar Şirketin diğer alanlarda yürüttüğü politika ve prosedürlerle de bağı kurularak uyumluluk sağlanmaktadır.</p>
+      </article>
+
+      <article class="sub" id="s52">
+        <h3>5.2 Kişisel Verilerin Korunması Komitesi</h3>
+        <p>Şirket Yönetim Kurulu kararı gereğince, işbu Politika'yı ve bağlı düzenlemeleri yönetmek üzere "Kişisel Verilerin Korunması Komitesi" oluşturulmuştur.</p>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Adı Soyadı</th><th>Unvanı</th><th>Birimi</th></tr></thead>
+            <tbody>
+              <tr><td class="committee-name">Gökhan Demir</td><td class="committee-role">Direktör</td><td>Bilgi Sistemleri</td></tr>
+              <tr><td class="committee-name">Hilal İnce</td><td class="committee-role">Müdür</td><td>İnsan Kaynakları</td></tr>
+              <tr><td class="committee-name">Cevriye Kesen</td><td class="committee-role">Müdür Yrd.</td><td>Müşteri Hizmetleri</td></tr>
+              <tr><td class="committee-name">Okan Eksen</td><td class="committee-role">Müdür Yrd.</td><td>İdari İşler</td></tr>
+              <tr><td class="committee-name">Burak Aytekin</td><td class="committee-role">Avukat</td><td>Avukat</td></tr>
+              <tr><td class="committee-name">Murat Yaşar Aydın</td><td class="committee-role">Müdür Yrd.</td><td>Bilgi Sistemleri</td></tr>
+              <tr><td class="committee-name">Ayşe Özdemir Kılıçlı</td><td class="committee-role">S. Program</td><td>Bilgi Sistemleri</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </article>
+
+      <article class="sub" id="s53">
+        <h3>5.3 Komitenin Görevleri</h3>
+        <ul class="policy-list">
+          <li>Temel politikaları ve gerektiğinde değişiklikleri hazırlamak ve üst yönetimin onayına sunmak</li>
+          <li>Politikaların uygulanması ve denetiminin ne şekilde yerine getirileceğine karar vermek, şirket içi görevlendirme ve koordinasyonu sağlamak</li>
+          <li>KVKK ve ilgili mevzuata uyumun sağlanması için yapılması gerekenleri tespit etmek, uygulanmasını gözetmek</li>
+          <li>Şirket içinde ve iş ortakları nezdinde farkındalığı arttırmak</li>
+          <li>Veri işleme faaliyetlerindeki riskleri tespit ederek gerekli önlemlerin alınmasını temin etmek</li>
+          <li>Eğitimler tasarlamak ve icra edilmesini sağlamak</li>
+          <li>Kişisel veri sahiplerinin başvurularını en üst düzeyde karara bağlamak ve taleplerini cevaplandırmak</li>
+          <li>İlgili kişilerin bilgilenmesini temin etmek üzere bilgilendirme ve eğitim faaliyetlerini koordine etmek</li>
+          <li>Gelişmeleri ve düzenlemeleri takip ederek üst yönetime tavsiyelerde bulunmak</li>
+          <li>Kişisel Verileri Koruma Kurulu ve Kurumu ile ilişkileri koordine etmek</li>
+          <li>Üst yönetimin vereceği diğer görevleri icra etmek</li>
+        </ul>
+      </article>
+    </section>
+
+    <section class="part" id="ek1">
+      <div class="part-eyebrow">Ek-1</div>
+      <h2>Tanımlar ve Kısaltmalar</h2>
+      <div class="table-wrap">
+        <table>
+          <tbody>
+            <tr><td class="term">Açık Rıza</td><td>Belirli bir konuya ilişkin, bilgilendirilmeye dayanan ve özgür iradeyle açıklanan rıza.</td></tr>
+            <tr><td class="term">Anonim Hale Getirme</td><td>Kişisel verinin, kişisel veri niteliğini kaybedecek ve bu durumun geri alınamayacağı şekilde değiştirilmesi. Örn: maskeleme, toplulaştırma, veri bozma.</td></tr>
+            <tr><td class="term">Çalışan Adayı</td><td>Şirketimize herhangi bir yolla iş başvurusunda bulunmuş ya da özgeçmişini incelemeye açmış olan gerçek kişiler.</td></tr>
+            <tr><td class="term">Kişisel Verilerin İşlenmesi</td><td>Kişisel verilerin tamamen/kısmen otomatik olan ya da bir veri kayıt sisteminin parçası olmak kaydıyla otomatik olmayan yollarla elde edilmesi, kaydedilmesi, depolanması, değiştirilmesi, aktarılması, sınıflandırılması ya da kullanılmasının engellenmesi gibi her türlü işlem.</td></tr>
+            <tr><td class="term">Kişisel Veri Sahibi</td><td>Kişisel verisi işlenen gerçek kişi.</td></tr>
+            <tr><td class="term">Müşteri</td><td>Şirketimizin sunduğu ürün ve hizmetleri kullanan veya kullanmış olan gerçek kişiler.</td></tr>
+            <tr><td class="term">Veri İşleyen</td><td>Veri sorumlusunun verdiği yetkiye dayanarak onun adına kişisel veri işleyen gerçek veya tüzel kişi.</td></tr>
+            <tr><td class="term">Veri Sorumlusu</td><td>Kişisel verilerin işlenme amaçlarını ve vasıtalarını belirleyen, veri kayıt sisteminin kurulmasından ve yönetilmesinden sorumlu gerçek veya tüzel kişi.</td></tr>
+            <tr><td class="term">Ziyaretçi</td><td>Şirketimizin fiziksel yerleşkelerine çeşitli amaçlarla girmiş olan veya internet sitelerini ziyaret eden gerçek kişiler.</td></tr>
+            <tr><td class="term">Kurul</td><td>Kişisel Verileri Koruma Kurulu.</td></tr>
+            <tr><td class="term">Kurum</td><td>Kişisel Verileri Koruma Kurumu.</td></tr>
+            <tr><td class="term">KVKK</td><td>6698 sayılı Kişisel Verilerin Korunması Kanunu.</td></tr>
+            <tr><td class="term">Yönetmelik</td><td>Kişisel Verilerin Silinmesi, Yok Edilmesi veya Anonim Hale Getirilmesi Hakkında Yönetmelik.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="part" id="ek2">
+      <div class="part-eyebrow">Ek-2</div>
+      <h2>Saklama ve İmha Sürelerini Gösterir Tablo</h2>
+      <div class="table-wrap">
+        <table>
+          <tbody>
+            <tr><td class="term">Saklama Süresi</td><td class="num">—</td></tr>
+            <tr><td class="term">İmha Süresi</td><td class="num">—</td></tr>
+            <tr><td class="term">Periyodik İmha Kontrol Süresi</td><td class="num">6 ayda bir</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="part" id="revizyon">
+      <div class="part-eyebrow">Revizyon Geçmişi</div>
+      <h2>Revizyon Tablosu</h2>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Yayın T.</th><th>Revizyon T.</th><th>Madde</th><th>Sayfa</th><th>Rev. No</th><th>Detay</th></tr>
+          </thead>
+          <tbody>
+            <tr><td class="num">29.12.2017</td><td class="num">29.12.2017</td><td>—</td><td class="num">—</td><td class="num">01</td><td>İlk yayın</td></tr>
+            <tr><td class="num">29.12.2017</td><td class="num">07.03.2023</td><td class="num">5.2</td><td class="num">14</td><td class="num">02</td><td>Komitede yer alan personellerin güncellenmesi</td></tr>
+            <tr><td class="num">29.12.2017</td><td class="num">25.07.2024</td><td class="num">5.2</td><td class="num">14</td><td class="num">03</td><td>Komitede yer alan personellerin güncellenmesi</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <footer class="doc-footer">
+      <span>Başkent Doğalgaz Dağıtım GYO A.Ş. — Hukuk Müşavirliği</span>
+      <span>Onaylayan: Yönetim Kurulu</span>
+      <span>www.baskentdogalgaz.com.tr</span>
+    </footer>
+  </main>
+</div>
+</body>
+</html>
