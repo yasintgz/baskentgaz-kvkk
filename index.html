@@ -151,6 +151,16 @@
     position:sticky;
     top:28px;
     padding-top:48px;
+    max-height:calc(100vh - 40px);
+    overflow-y:auto;
+    overscroll-behavior:contain;
+    scrollbar-width:thin;
+    scrollbar-color:var(--line) transparent;
+  }
+  nav.toc::-webkit-scrollbar{ width:8px; }
+  nav.toc::-webkit-scrollbar-thumb{
+    background:var(--line); border-radius:8px;
+    border:2px solid transparent; background-clip:padding-box;
   }
   nav.toc .toc-label{
     font-family:var(--mono);
